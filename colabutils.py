@@ -57,6 +57,7 @@ def download_imgs_from_google(keyword,num):
 	return {
 	    'keyword':keyword
 	    ,'img_count':img_count
+	    ,'img_dir':img_dir
 	}
 
 # download_imgs_from_google('boats',200)    
