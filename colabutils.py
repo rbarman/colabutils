@@ -13,22 +13,21 @@ def collab_setup():
     Chrome driver is required if we want to download over 100 google images  
   '''
   
-  # install all relevant packages if chrome driver is not installed
-  if not os.path.isfile('/usr/lib/chromium-browser/chromedriver'):
-    print('installing...')
-    
-    # !<> is invalid in raw python
-    #!apt install chromium-chromedriver
-    #!cp /usr/lib/chromium-browser/chromedriver /usr/bin
-    os.system('apt install chromium-chromedriver')
-    os.system('/usr/lib/chromium-browser/chromedriver /usr/bin')
-    sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')  
+  	# install all relevant packages if chrome driver is not installed
+	if not os.path.isfile('/usr/lib/chromium-browser/chromedriver'):
+	    
+	    # !<> is invalid in raw python
+	    #!apt install chromium-chromedriver
+	    #!cp /usr/lib/chromium-browser/chromedriver /usr/bin
+	    os.system('apt install chromium-chromedriver')
+	    os.system('/usr/lib/chromium-browser/chromedriver /usr/bin')
+	    sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')  
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    wd = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+	    chrome_options = webdriver.ChromeOptions()
+	    chrome_options.add_argument('--headless')
+	    chrome_options.add_argument('--no-sandbox')
+	    chrome_options.add_argument('--disable-dev-shm-usage')
+	    wd = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 def download_imgs_from_google(keyword,num):
 
