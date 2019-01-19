@@ -1,7 +1,6 @@
 from google_images_download import google_images_download
 import cv2
 import glob
-import importlib
 from selenium import webdriver
 import sys
 import os
