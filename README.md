@@ -1,7 +1,8 @@
 # colabutils
 ```
 !git clone https://github.com/rbarman/colabutils
-from colabutils import colabutils as c
+!pip install -r colabutils/requirements.txt
 
+from colabutils import colabutils as c
 c.download_imgs_from_google('boats',200)
 ```
