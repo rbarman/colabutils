@@ -17,8 +17,11 @@ def collab_setup():
   if not os.path.isfile('/usr/lib/chromium-browser/chromedriver'):
     print('installing...')
     
-    !apt install chromium-chromedriver
-    !cp /usr/lib/chromium-browser/chromedriver /usr/bin
+    # !<> is invalid in raw python
+    #!apt install chromium-chromedriver
+    #!cp /usr/lib/chromium-browser/chromedriver /usr/bin
+    os.system('apt install chromium-chromedriver')
+    os.system('/usr/lib/chromium-browser/chromedriver /usr/bin')
     sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')  
 
     chrome_options = webdriver.ChromeOptions()
