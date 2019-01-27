@@ -51,7 +51,7 @@ def download_imgs_from_google(keyword,num):
 	for img_path in img_paths:
 	  img = cv2.imread(img_path)
 	  if img is None:
-	      os.remove(path)
+	      os.remove(img_path)
 	      
 	img_count = len(glob.glob(f'{img_dir}*'))
 	return {
