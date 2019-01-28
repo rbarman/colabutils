@@ -4,6 +4,8 @@ import glob
 from selenium import webdriver
 import sys
 import os
+import numpy as np
+import random
 
 def collab_setup():
 
@@ -60,4 +62,31 @@ def download_imgs_from_google(keyword,num):
 	    ,'img_dir':img_dir
 	}
 
-# download_imgs_from_google('boats',200)    
+def create_imagenet_style_dirs():
+
+	'''
+		Create image net style directories for all images in downloads/.
+		- data/train/<class> for each class
+		- data/valid/<class> for each class
+		- data/test
+		All possible classs are defined by downloads/<class> 
+		Images per each class are split 60/20/20 to train/valid/test
+	'''
+	os.system(f'mkdir data/train')
+	os.system(f'mkdir data/valid')
+	os.system(f'mkdir data/test')
+
+	classes = [os.path.basename(x) for x in glob.glob('downloads/*')];
+	for c in classes:
+		# get image paths for a class and split 60/20/20 into train/valid/test
+		c_paths = [path for path in glob.glob(f'downloads/{c}/*')];
+		random.shuffle(c_paths)
+		train,valid,test = np.split(c_paths, [int(.6*len(c_paths)), int(.8*len(c_paths))])
+
+		# create class subfolders and move images over
+		os.system(f'mkdir data/train/"{c}"')
+		os.system(f'mkdir data/valid/"{c}"')
+
+		_ = [os.system(f'mv "{path}" data/train/"{c}"') for path in train]
+		_ = [os.system(f'mv "{path}" data/valid/"{c}"') for path in valid]
+		_ = [os.system(f'mv "{path}" data/test/') for path in test]
